@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Button, Dialog, DialogTitle, Alert, DialogContent, DialogActions, TextField, Select, MenuItem, FormControl, InputLabel, Box } from '@mui/material';
+import { Button, Dialog, DialogTitle, Alert, DialogContent, DialogActions, TextField, Select, MenuItem, FormControl, InputLabel, Box, useMediaQuery } from '@mui/material';
 import axios from 'axios';
 import { Loader } from './Loader';
 import mock from '../mock';
@@ -46,7 +46,7 @@ function PaymentForm() {
     }
     setErrors(newErrors);
   };
-
+  const isMobile = useMediaQuery('(max-width:600px)');
   const isFormValid = () => {
     return formData.to && formData.from && formData.amount && Object.values(errors).every(x => x === '');
   };
@@ -107,7 +107,12 @@ function PaymentForm() {
 
   return (
     <>
-      <Button variant="contained" color="primary" onClick={handleOpen}>Make Payment</Button>
+      <Button variant="contained" color="primary"
+        sx={{
+          fontSize: isMobile ? '0.75rem' : '1rem',
+          padding: isMobile ? '6px 12px' : '8px 16px'
+        }}
+        onClick={handleOpen}>Make Payment</Button>
       <Dialog
         open={open}
         onClose={(event, reason) => {

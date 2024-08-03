@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import { Button, Dialog, DialogTitle, Alert, DialogContent, DialogActions, TextField, Select, MenuItem, FormControl, InputLabel, Box } from '@mui/material';
 import axios from 'axios';
+import { useMediaQuery } from '@mui/material';
 import { Loader } from './Loader';
-import mock from '../mock';
+import mock from '../mock'; ``
 
 function PaymentError() {
     const [open, setOpen] = useState(false);
@@ -53,7 +54,7 @@ function PaymentError() {
     }
 
     let res;
-
+    const isMobile = useMediaQuery('(max-width:600px)');
     const handleSubmit = async (e) => {
         e.preventDefault();
         setErrors({});
@@ -98,7 +99,12 @@ function PaymentError() {
 
     return (
         <>
-            <Button variant="contained" color="primary" onClick={handleOpen}>Make Payment</Button>
+            <Button variant="contained" color="primary"
+                sx={{
+                    fontSize: isMobile ? '0.75rem' : '1rem',
+                    padding: isMobile ? '6px 12px' : '8px 16px'
+                }}
+                onClick={handleOpen}>Make Payment</Button>
             <Dialog
                 open={open}
                 onClose={(event, reason) => {
@@ -184,7 +190,7 @@ function PaymentError() {
                         zIndex: 2000
                     }}
                 >
-                    Bad Request 500: Please check your input.
+                    Bad Request 404: Please check your input.
                 </Alert>
             )}
 

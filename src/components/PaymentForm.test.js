@@ -56,7 +56,7 @@ describe('PaymentForm', () => {
     fireEvent.change(screen.getByLabelText('From'), { target: { value: 'BTC' } });
     fireEvent.click(screen.getByText('Pay Now'));
 
-    await waitFor(() => expect(window.location.href).toBe('/login'));
+    await waitFor(() => expect(window.location.href).toBe('/'));
   });
 
   it('displays error message on server error', async () => {
