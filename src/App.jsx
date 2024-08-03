@@ -11,7 +11,7 @@ function App() {
   return (
     <ThemeProvider theme={theme}>
       <Box component="section">
-        <h1>Payment Application</h1>
+        <h1 style={{ textAlign: 'center' }}>Payment Application</h1>
         <Box display={"flex"} justifyContent={"space-evenly"}>
           <PaymentForm />
           <PaymentError />
