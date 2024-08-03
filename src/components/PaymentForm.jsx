@@ -80,7 +80,7 @@ function PaymentForm() {
           description: ''
         });
         setShowAlert(true);
-      }, 3000); 
+      }, 3000);
 
     } catch (error) {
       setIsLoading(false);
@@ -91,7 +91,7 @@ function PaymentForm() {
         if (error.response.status === 400) {
           setErrors({ submit: 'Bad Request: Please check your input.' });
         } else if (error.response.status === 401) {
-          window.location.href = '/'; 
+          window.location.href = '/';
         } else if (error.response.status >= 500) {
           setErrors({ submit: 'Server Error: Please try again later.' });
         } else {
@@ -101,7 +101,7 @@ function PaymentForm() {
         setErrors({ submit: 'Network Error: Please try again later.' });
       }
       console.error('Error:', error);
-    
+
     }
   };
 
