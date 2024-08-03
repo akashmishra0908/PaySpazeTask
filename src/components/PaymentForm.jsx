@@ -87,6 +87,21 @@ function PaymentForm() {
       setIsFormBlurred(false);
       setErrors({ submit: error.message });
       console.error('Error:', error);
+      if (error.response) {
+        if (error.response.status === 400) {
+          setErrors({ submit: 'Bad Request: Please check your input.' });
+        } else if (error.response.status === 401) {
+          window.location.href = '/'; 
+        } else if (error.response.status >= 500) {
+          setErrors({ submit: 'Server Error: Please try again later.' });
+        } else {
+          setErrors({ submit: error.message });
+        }
+      } else {
+        setErrors({ submit: 'Network Error: Please try again later.' });
+      }
+      console.error('Error:', error);
+    
     }
   };
 
